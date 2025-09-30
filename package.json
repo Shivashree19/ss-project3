@@ -1,0 +1,23 @@
+{
+  "name": "ss-project3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "payment-script.js",
+  "scripts": {
+    "start": "npm install --no-audit --no-fund && node server.js",
+    "start:bg": "npm install --no-audit --no-fund && node -e \"const {spawn}=require('child_process');const fs=require('fs');const p=spawn('node',['server.js'],{detached:true,stdio:'ignore'});fs.writeFileSync('.server.pid', String(p.pid));p.unref();\"",
+    "stop:bg": "node -e \"const fs=require('fs');if(fs.existsSync('.server.pid')){const pid=Number(fs.readFileSync('.server.pid'));try{process.kill(pid)}catch(e){}fs.unlinkSync('.server.pid');}\"",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "uuid": "^13.0.0"
+  }
+}
